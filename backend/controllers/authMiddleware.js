@@ -1,11 +1,10 @@
 //import async handler since installed async-handler package
 const asyncHandler = require("express-async-handler");
-
 // importing user from database file userModel
 const User = require ("D:/web_projects/InventoryManagementApp/backend/userModels/userModels");
-
 // importing JWT
 const jwt = require("jsonwebtoken");
+
 
 const protect = asyncHandler(async(req,res,next) =>{
     // we will check if there is cookie(token) or not 
@@ -25,7 +24,7 @@ const protect = asyncHandler(async(req,res,next) =>{
       // using the user _id(since we used _id and jwt_secret to create the token)
       
       // Get user id from token using 'verified' variable
-      // we want all the information except the user password -> use .select("-password") 
+      // we want all the information except the user password -> use .select("-password") ,to be stored in user variable
       const user = await User.findById(verified.id).select("-password");
       
       //user not found

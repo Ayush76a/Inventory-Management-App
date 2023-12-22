@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { registerUser, loginUser, logout, getUser, loginStatus, updateUser, changePassword} = require('../controllers/userController');
+const { registerUser, loginUser, logout, getUser, loginStatus, updateUser, changePassword, forgotPassword, resetPassword} = require('../controllers/userController');
 const protect = require('../controllers/authMiddleware');
 
 
@@ -21,6 +21,12 @@ router.get("/loginstatus",loginStatus);
 router.patch("/updateuser",protect,updateUser);
 //Update User Password
 router.patch("/changepassword",protect,changePassword);
+
+//ForgetPassword -> a post request(since on clicking forget password -> we need to send the users email)
+router.post("/forgotpassword", forgotPassword);
+
+//Reset Password -> it will have the Token in its Url
+router.put("/resetpassword/:resetToken", resetPassword)
 
 
 module.exports = router;

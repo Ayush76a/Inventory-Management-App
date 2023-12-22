@@ -1,6 +1,6 @@
 
 const express = require('express');
-const dotenv = require('dotenv');
+const dotenv = require('dotenv'); // for using .env file
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyparser = require('body-parser');
@@ -11,7 +11,8 @@ const userRoutes = require ("D:/web_projects/InventoryManagementApp/backend/rout
 const errorHandler= require("D:/web_projects/InventoryManagementApp/backend/middleWares/errorMiddleware.js");
 //importing cookieParser
 const cookieParser = require("cookie-parser");
-
+// importing product Routes
+const productRoutes = require("./backend/routes/productRoutes");
 
 
 
@@ -31,8 +32,9 @@ app.use(express.urlencoded({extended:false}));
 app.use(bodyparser.json());
 app.use(cookieParser());
 app.use(cors());
-//Rotes Middlewares
+//Rotes Middlewares i.e. prefix for userRoutes
 app.use("/api/users", userRoutes);
+app.use("api/products", productRoutes);
 
 
 
@@ -49,9 +51,10 @@ const PORT=process.env.PORT || 6000 ;
 // call errorHandler middleware just before connecting database
 app.use(errorHandler)
 
+console.log(process.env.MONGO_URI);
 // Connecting to mongoDb and start server
 mongoose
-       .connect(process.env.MONGO_URI,)
+       .connect(process.env.MONGO_URI)
        .then( () => {
           app.listen( PORT, ()=>{
           console.log(`Server running on port ${PORT}`)
