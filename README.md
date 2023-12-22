@@ -21,3 +21,6 @@ Backend tested using Postman :
 
 ![IMA8](https://github.com/Ayush76a/Inventory-Management-App/assets/93537186/900ae9ff-b848-439b-a378-f581d92ee82a)
 ![IMA9](https://github.com/Ayush76a/Inventory-Management-App/assets/93537186/a540f34a-958c-4e4c-89e6-4ad0a8ad8c4c)
+
+Follow the below readme file:
+D:\web_projects\InventoryManagementApp\backendReadme.txt
